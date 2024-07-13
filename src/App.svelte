@@ -4,39 +4,41 @@
 	import Schedule from "./lib/Schedule.svelte";
 
 	let arr_clicked_days = [];
+	let selected_times = {};
 	function day_clicked(event) {
 		if (arr_clicked_days.includes(event.detail.day)) {
 			arr_clicked_days = arr_clicked_days.filter(
 				(day) => day !== event.detail.day,
 			);
+			const dateString = event.detail.day.toISOString().split("T")[0];
+			delete selected_times[dateString];
+			selected_times = { ...selected_times }; // Trigger reactivity
 		} else {
 			arr_clicked_days.push(event.detail.day);
-			arr_clicked_days = arr_clicked_days;
 		}
+		arr_clicked_days = arr_clicked_days;
 		arr_clicked_days.sort(function (a, b) {
 			return a - b;
 		});
 		console.log(arr_clicked_days);
 	}
 
-	let arr_clicked_tile_times = [];
 	function tile_times_clicked(event) {
-		if (arr_clicked_tile_times.includes(event.detail.day_hour)) {
-			arr_clicked_tile_times = arr_clicked_tile_times.filter(
-				(day_hour) => day_hour !== event.detail.day_hour,
-			);
-		} else {
-			arr_clicked_tile_times.push(event.detail.day_hour);
-			arr_clicked_tile_times = arr_clicked_tile_times;
+		const { day, hour } = event.detail;
+		const dateString = day.toISOString().split("T")[0];
+		if (!selected_times[dateString]) {
+			selected_times[dateString] = [];
 		}
-		arr_clicked_tile_times.sort(function (a, b) {
-			if (a[0] === b[0]) {
-				return a[1] - b[1];
-			} else {
-				return a[0] - b[0];
-			}
-		});
-		console.log(arr_clicked_tile_times.map((subArray) => subArray[1]));
+
+		const index = selected_times[dateString].indexOf(hour);
+		if (index > -1) {
+			selected_times[dateString].splice(index, 1);
+		} else {
+			selected_times[dateString].push(hour);
+		}
+
+		selected_times = { ...selected_times }; // Trigger reactivity
+		console.log(selected_times);
 	}
 </script>
 
@@ -57,6 +59,7 @@
 		<Schedule
 			on:tile_times_clicked={tile_times_clicked}
 			{arr_clicked_days}
+			{selected_times}
 		/>
 	</div>
 </main>

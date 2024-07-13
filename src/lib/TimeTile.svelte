@@ -3,17 +3,15 @@
     const dispatch = createEventDispatcher();
     export let day;
     export let hour;
-    let day_hour = [day, hour];
-    let clicked = false;
+    export let selected;
 
     function clicked_tile_time() {
-        clicked = !clicked;
-        dispatch("tile_times_clicked", { day_hour });
+        dispatch("tile_times_clicked", { day, hour });
     }
 </script>
 
 <main>
-    <button class:clicked on:click={clicked_tile_time} class="tile_time"
+    <button class:selected on:click={clicked_tile_time} class="tile_time"
     ></button>
 </main>
 
@@ -26,7 +24,7 @@
         display: table;
     }
 
-    .clicked {
+    .selected {
         background-color: red;
     }
 

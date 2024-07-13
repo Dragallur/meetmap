@@ -1,6 +1,7 @@
 <script>
     import TimeTile from "./TimeTile.svelte";
     export let arr_clicked_days = [];
+    export let selected_times = {};
     let months = [
         "Jan",
         "Feb",
@@ -41,7 +42,14 @@
                     {months[day.getMonth()] + " " + day.getDate()}
                     <div class="tile">
                         {#each Array((max_time - min_time) * 2) as _, i}
-                            <TimeTile {day} hour={i} on:tile_times_clicked />
+                            <TimeTile
+                                {day}
+                                hour={i}
+                                on:tile_times_clicked
+                                selected={selected_times[
+                                    day.toISOString().split("T")[0]
+                                ]?.includes(i) || false}
+                            />
                         {/each}
                     </div>
                 </div>

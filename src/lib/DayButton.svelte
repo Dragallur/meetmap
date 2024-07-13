@@ -7,12 +7,12 @@
 
     function clicked_day() {
         clicked = !clicked;
-        dispatch('day_clicked', { day });
+        dispatch("day_clicked", { day });
     }
 </script>
 
 <main>
-    <button class:clicked={clicked} on:click={clicked_day}>{btn_str}</button>
+    <button class:clicked on:click={clicked_day}>{btn_str}</button>
 </main>
 
 <style>

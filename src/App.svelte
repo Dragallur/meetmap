@@ -16,6 +16,27 @@
 		arr_clicked_days.sort(function (a, b) {
 			return a - b;
 		});
+		console.log(arr_clicked_days);
+	}
+
+	let arr_clicked_tile_times = [];
+	function tile_times_clicked(event) {
+		if (arr_clicked_tile_times.includes(event.detail.day_hour)) {
+			arr_clicked_tile_times = arr_clicked_tile_times.filter(
+				(day_hour) => day_hour !== event.detail.day_hour,
+			);
+		} else {
+			arr_clicked_tile_times.push(event.detail.day_hour);
+			arr_clicked_tile_times = arr_clicked_tile_times;
+		}
+		arr_clicked_tile_times.sort(function (a, b) {
+			if (a[0] === b[0]) {
+				return a[1] - b[1];
+			} else {
+				return a[0] - b[0];
+			}
+		});
+		console.log(arr_clicked_tile_times.map((subArray) => subArray[1]));
 	}
 </script>
 
@@ -33,7 +54,10 @@
 	</div>
 
 	<div class="card">
-		<Schedule {arr_clicked_days} />
+		<Schedule
+			on:tile_times_clicked={tile_times_clicked}
+			{arr_clicked_days}
+		/>
 	</div>
 </main>
 

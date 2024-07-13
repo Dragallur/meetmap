@@ -1,4 +1,5 @@
 <script>
+    import TimeTile from "./TimeTile.svelte";
     export let arr_clicked_days = [];
     let months = [
         "Jan",
@@ -40,7 +41,7 @@
                     {months[day.getMonth()] + " " + day.getDate()}
                     <div class="tile">
                         {#each Array((max_time - min_time) * 2) as _, i}
-                            <div class="tile_time"></div>
+                            <TimeTile {day} hour={i} on:tile_times_clicked />
                         {/each}
                     </div>
                 </div>
@@ -72,6 +73,8 @@
         border: 1px solid transparent;
         height: 20px;
         color: gray;
+        font-size: smaller;
+        font-family: arial;
     }
 
     .schedule {
@@ -85,12 +88,5 @@
 
     .schedule_days {
         text-align: center;
-    }
-
-    .tile_time {
-        width: 60px;
-        height: 20px;
-        background-color: white;
-        border: 1px solid black;
     }
 </style>

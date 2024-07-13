@@ -56,18 +56,30 @@
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         background-color: black;
-        border: 2px solid;
+        border: 2px solid #ff0000;
         align-items: center;
         margin: 5px;
+        padding: 10px;
     }
 
     .grid-month-name {
         white-space: nowrap;
+        color: #ff0000;
+        font-weight: bold;
+        font-size: 14px;
+        margin-right: 2px;
     }
 
     .grid-day-names,
     .grid-month-name {
-        margin: 5px;
         text-align: center;
+        color: #ffffff;
+        font-size: 12px;
+    }
+
+    .grid-day-names {
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #cccccc;
     }
 </style>

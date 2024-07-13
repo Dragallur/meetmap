@@ -8,10 +8,22 @@
     function clicked_tile_time() {
         dispatch("tile_times_clicked", { day, hour });
     }
+    function mouse_down_from_here() {
+        dispatch("mouse_down_from_here", { day, hour });
+    }
+    function mouse_over_to_here() {
+        dispatch("mouse_over_to_here", { day, hour });
+    }
 </script>
 
 <main>
-    <button class:selected on:click={clicked_tile_time} class="tile_time"
+    <button
+        class:selected
+        on:click={clicked_tile_time}
+        on:mousedown={mouse_down_from_here}
+        on:mouseover={mouse_over_to_here}
+        on:focus={}
+        class="tile_time"
     ></button>
 </main>
 

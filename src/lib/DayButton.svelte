@@ -26,10 +26,11 @@
     }
 
     button {
-        width: 80%;
+        width: 100%;
         text-align: center;
-        background-color: #242424;
-        margin: 3px;
+        background-color: white;
+        border: 1px solid black;
+        display: table;
     }
 
     button:hover {

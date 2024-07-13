@@ -40,6 +40,14 @@
 		selected_times = { ...selected_times }; // Trigger reactivity
 		console.log(selected_times);
 	}
+
+	function select_from_here(event) {
+		//pass
+	}
+
+	function select_to_here(event) {
+		//pass
+	}
 </script>
 
 <main>
@@ -58,6 +66,8 @@
 	<div class="card">
 		<Schedule
 			on:tile_times_clicked={tile_times_clicked}
+			on:select_from_here={select_from_here}
+			on:select_to_here={select_to_here}
 			{arr_clicked_days}
 			{selected_times}
 		/>
@@ -70,5 +80,6 @@
 		flex-direction: column;
 		align-items: center;
 		margin: 5% 20%;
+		font-family: Arial, sans-serif;
 	}
 </style>

@@ -46,6 +46,8 @@
                                 {day}
                                 hour={i}
                                 on:tile_times_clicked
+                                on:select_from_here
+                                on:select_to_here
                                 selected={selected_times[
                                     day.toISOString().split("T")[0]
                                 ]?.includes(i) || false}
@@ -61,7 +63,7 @@
 <style>
     .timetable {
         display: flex;
-        border: 2px solid;
+        border: 2px solid #ff0000;
         background-color: black;
         margin: 5px;
     }
@@ -96,5 +98,7 @@
 
     .schedule_days {
         text-align: center;
+        color: #cccccc;
+        font-weight: bold;
     }
 </style>

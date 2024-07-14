@@ -5,24 +5,24 @@
     export let hour;
     export let selected;
 
-    function clicked_tile_time() {
-        dispatch("tile_times_clicked", { day, hour });
+    function select_from_here() {
+        dispatch("select_from_here", { day, hour });
     }
-    function mouse_down_from_here() {
-        dispatch("mouse_down_from_here", { day, hour });
+    function select_to_here() {
+        dispatch("select_to_here", { day, hour });
     }
-    function mouse_over_to_here() {
-        dispatch("mouse_over_to_here", { day, hour });
+    function mouse_up() {
+        dispatch("mouse_up", { day, hour });
     }
 </script>
 
 <main>
     <button
         class:selected
-        on:click={clicked_tile_time}
-        on:mousedown={mouse_down_from_here}
-        on:mouseover={mouse_over_to_here}
-        on:focus={}
+        on:mousedown={select_from_here}
+        on:mouseover={select_to_here}
+        on:focus={select_to_here}
+        on:mouseup={mouse_up}
         class="tile_time"
     ></button>
 </main>
@@ -41,6 +41,6 @@
     }
 
     .tile_time:hover {
-        background-color: red;
+        background-color: rgb(255, 76, 76);
     }
 </style>

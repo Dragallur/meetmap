@@ -23,6 +23,12 @@
         let time_label = String(index / 2 + min_time).padStart(2, "0") + ":00";
         return time_label;
     }
+
+    import { createEventDispatcher } from "svelte";
+    const dispatch = createEventDispatcher();
+    function left_schedule(event) {
+        dispatch("left_schedule");
+    }
 </script>
 
 <main>
@@ -36,7 +42,7 @@
                 </div>
             {/each}
         </div>
-        <div class="schedule">
+        <div class="schedule" on:mouseleave={left_schedule} role="region">
             {#each arr_clicked_days as day}
                 <div class="schedule_days">
                     {months[day.getMonth()] + " " + day.getDate()}
@@ -45,9 +51,9 @@
                             <TimeTile
                                 {day}
                                 hour={i}
-                                on:tile_times_clicked
                                 on:select_from_here
                                 on:select_to_here
+                                on:mouse_up
                                 selected={selected_times[
                                     day.toISOString().split("T")[0]
                                 ]?.includes(i) || false}
